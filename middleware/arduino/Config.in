@@ -1,0 +1,22 @@
+config AOS_COMP_ARDUINO_FRAMEWORK
+    bool "arduino_framework"
+    select AOS_COMP_CPLUSPLUS
+    select AOS_COMP_CLI
+    select AOS_COMP_YLOOP
+    select AOS_COMP_VFS
+    select AOS_COMP_FATFS
+    select AOS_COMP_NETMGR
+    select AOS_COMP_ATPARSER if ATHOSTAPP_CONFIG_ATPARSER
+    select AOS_COMP_ATHOST
+    help
+        Arduino FrameWork
+
+if AOS_APP_ARDUINO_FRAMEWORK
+# Configurations for app arduino
+
+config ATHOSTAPP_CONFIG_ATPARSER
+    bool "Support ATParser"
+    default y
+
+source "network/nal/athost/Config.in"
+endif

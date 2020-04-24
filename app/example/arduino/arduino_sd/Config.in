@@ -1,0 +1,11 @@
+config AOS_APP_ARDUINO_SD
+    bool "arduino_sd"
+    select AOS_COMP_CPLUSPLUS
+    select AOS_COMP_ARDUINO_FRAMEWORK
+    select AOS_COMP_VFS
+    select AOS_COMP_FATFS
+    help
+
+if AOS_APP_ARDUINO_SD
+# Configurations for app arduino
+endif

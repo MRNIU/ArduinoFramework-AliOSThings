@@ -1,0 +1,9 @@
+config AOS_APP_ARDUINO_BASE
+    bool "arduino base"
+    select AOS_COMP_CPLUSPLUS
+    select AOS_COMP_ARDUINO_FRAMEWORK
+    help
+
+if AOS_APP_ARDUINO_BASE
+# Configurations for app arduino
+endif

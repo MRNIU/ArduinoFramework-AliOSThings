@@ -1,0 +1,45 @@
+config AOS_APP_EXAMPLE
+    bool "Builtin Examples"
+
+if AOS_APP_EXAMPLE
+choice
+    prompt "Select example"
+
+source "app/example/arduino/arduino_base/Config.in"
+if AOS_APP_ARDUINO_BASE
+    config AOS_BUILD_APP
+        default "arduino.arduino_base"
+endif
+
+source "app/example/arduino/arduino_eeprom/Config.in"
+if AOS_APP_ARDUINO_EEPROM
+    config AOS_BUILD_APP
+        default "arduino.arduino_eeprom"
+endif
+
+source "app/example/arduino/arduino_sd/Config.in"
+if AOS_APP_ARDUINO_SD
+    config AOS_BUILD_APP
+        default "arduino.arduino_sd"
+endif
+
+source "app/example/arduino/arduino_lcd/Config.in"
+if AOS_APP_ARDUINO_LCD
+    config AOS_BUILD_APP
+        default "arduino.arduino_lcd"
+endif
+
+source "app/example/arduino/arduino_softwareserial/Config.in"
+if AOS_APP_ARDUINO_SOFTWARESERIAL
+    config AOS_BUILD_APP
+        default "arduino.arduino_softwareserial"
+endif
+
+source "app/example/arduino/arduino_wire/Config.in"
+if AOS_APP_ARDUINO_WIRE
+    config AOS_BUILD_APP
+        default "arduino.arduino_wire"
+endif
+
+endchoice
+endif

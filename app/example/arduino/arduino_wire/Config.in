@@ -1,0 +1,9 @@
+config AOS_APP_ARDUINO_WIRE
+    bool "arduino_wire"
+    select AOS_COMP_CPLUSPLUS
+    select AOS_COMP_ARDUINO_FRAMEWORK
+    help
+
+if AOS_APP_ARDUINO_WIRE
+# Configurations for app arduino
+endif
