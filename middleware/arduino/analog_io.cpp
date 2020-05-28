@@ -17,7 +17,7 @@ extern "C" {
 }
 #endif /* __cplusplus */ 
 
-#include <include/arduino.h>
+#include <api/ArduinoAPI.h>
 
 #define DAC_CHANNEL_ONE 1
 

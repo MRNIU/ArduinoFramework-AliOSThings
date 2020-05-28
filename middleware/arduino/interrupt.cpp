@@ -12,18 +12,10 @@ extern "C" {
 }
 #endif /* __cplusplus */
 
-#include <include/arduino.h>
+#include <api/ArduinoAPI.h>
 
-void attachInterrupt(uint32_t, void (*)(void), int mode);
-void detachInterrupt(uint32_t);
-
-void attachInterrupt(uint32_t vec, void (*tmp)(void), int mode)
+void detachInterrupt(pin_size_t interruptNumber)
 {
-    return;
-}
-
-void detachInterrupt(uint32_t vec)
-{
-    hal_interpt_umask(vec);
+    hal_interpt_umask(interruptNumber);
     return;
 }

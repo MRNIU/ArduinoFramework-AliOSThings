@@ -18,10 +18,10 @@ void arduino_exp_time_millis(void)
 {
     unsigned long time;
     
-    printf("millis Time: ");
+    print("millis Time: ");
     time = millis();
 
-    printf("%lu\n", time);
+    print("%lu\n", time);
     delay(1000);
 
     return;

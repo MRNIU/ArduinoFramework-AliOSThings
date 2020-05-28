@@ -5,7 +5,7 @@
 #ifndef ARDUINO_EXP_EEPROM_H
 #define ARDUINO_EXP_EEPROM_H
 
-#include <../middleware/arduino/include/arduino.h>
+#include <../middleware/arduino/api/ArduinoAPI.h>
 #include <../middleware/arduino/include/eeprom.h>
 
 #define LED_1 22

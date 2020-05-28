@@ -15,8 +15,7 @@ extern "C"{
 }
 #endif /* __cplusplus */
 
-#include <../middleware/arduino/include/arduino.h>
-#include <../middleware/arduino/include/character.h>
+#include <../middleware/arduino/api/ArduinoAPI.h>
 
 #define LED_1 22
 #define LED_2 63

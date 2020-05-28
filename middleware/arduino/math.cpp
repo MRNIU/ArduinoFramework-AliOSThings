@@ -12,7 +12,7 @@ extern "C" {
 }
 #endif /* __cplusplus */
 
-#include <include/arduino.h>
+#include <api/ArduinoAPI.h>
 
 void randomSeed(unsigned long seed)
 {
@@ -36,19 +36,4 @@ long random(long howsmall, long howbig)
     }
     long diff = howbig - howsmall;
     return random(diff) + howsmall;
-}
-
-long map(long x, long in_min, long in_max, long out_min, long out_max)
-{
-    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
-
-uint16_t makeWord(uint16_t w) 
-{ 
-    return w;
-}
-
-uint16_t makeWord(byte h, byte l) 
-{ 
-    return (h << 8) | l; 
 }

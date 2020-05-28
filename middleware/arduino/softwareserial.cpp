@@ -28,9 +28,9 @@ SoftwareSerial::~SoftwareSerial()
     return;
 }
 
-void SoftwareSerial::begin(uint32_t speed)
+void SoftwareSerial::begin(unsigned long baudrate)
 {
-    this->uart.config.baud_rate    = speed;
+    this->uart.config.baud_rate    = baudrate;
     
     int ret = -1;
     ret = hal_uart_init(&this->uart); 

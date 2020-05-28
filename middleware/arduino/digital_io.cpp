@@ -15,18 +15,19 @@ extern "C" {
 }
 #endif /* __cplusplus */
 
-#include <include/arduino.h>
+#include <api/ArduinoAPI.h>
+#include <include/linkedlist.h>
 
 static ListEntry * gpio_list = 0;
 
-static gpio_config_t type_switch(uint8_t config);
+static gpio_config_t type_switch(PinMode pinMode);
 int port_equal(void *vlocation1, void *vlocation2);
 
-static gpio_config_t type_switch(uint8_t config)
+static gpio_config_t type_switch(PinMode pinMode)
 {
-    if(config == OUTPUT)
+    if(pinMode == OUTPUT)
         return OUTPUT_PUSH_PULL;
-    else if(config == INPUT)
+    else if(pinMode == INPUT)
         return INPUT_PULL_DOWN;
     return INPUT_PULL_UP;
 }
@@ -50,20 +51,20 @@ int port_equal(void *vlocation1, void *vlocation2)
  *
  * @return     void
  */
-void pinMode(uint8_t pin, uint8_t config)
+void pinMode(pin_size_t pinNumber, PinMode pinMode)
 {
-    gpio_dev_t * res = (gpio_dev_t *)list_find_data(gpio_list, port_equal, &pin);
+    gpio_dev_t * res = (gpio_dev_t *)list_find_data(gpio_list, port_equal, &pinNumber);
     // pin not in gpio_list
     if(res == NULL) {
         gpio_dev_t * gpio_pin = (gpio_dev_t *)malloc(sizeof(gpio_dev_t));
-        gpio_pin->port = pin;
-        gpio_pin->config = type_switch(config);
+        gpio_pin->port = pinNumber;
+        gpio_pin->config = type_switch(pinMode);
         list_append(&gpio_list, gpio_pin);
     }
     // else update pin mode
     else {
-        res->port = pin;
-        res->config = type_switch(config);
+        res->port = pinNumber;
+        res->config = type_switch(pinMode);
     }
 
     return;
@@ -77,21 +78,21 @@ void pinMode(uint8_t pin, uint8_t config)
  *
  * @return     void
  */
-void digitalWrite(uint8_t pin, uint8_t val){
-    gpio_dev_t * res = (gpio_dev_t *)list_find_data(gpio_list, port_equal, &pin);
+void digitalWrite(pin_size_t pinNumber, PinStatus status) {
+    gpio_dev_t * res = (gpio_dev_t *)list_find_data(gpio_list, port_equal, &pinNumber);
     if(res == NULL) {
         printf("Error: pin not init!\n");
     }
     // else update pin mode
     else {
         printf("1\n");
-        if(val == HIGH) {
+        if(status == HIGH) {
             printf("2\n");
             if(hal_gpio_output_high(res))
                 printf("hal_gpio_output_high error!\n");
             return;
         }
-        else if(val == LOW) {
+        else if(status == LOW) {
             printf("3\n");
             if(hal_gpio_output_low(res))
                 printf("hal_gpio_output_low error!\n");
@@ -107,17 +108,17 @@ void digitalWrite(uint8_t pin, uint8_t val){
  * @param[in]  pin  the pin which should be read
  * @return     the value from gpio pin
  */
-int digitalRead(uint8_t pin)
+PinStatus digitalRead(pin_size_t pinNumber)
 {
     uint32_t val;
-    gpio_dev_t * res = (gpio_dev_t *)list_find_data(gpio_list, port_equal, &pin);
+    gpio_dev_t * res = (gpio_dev_t *)list_find_data(gpio_list, port_equal, &pinNumber);
     if(res == NULL) {
         printf("Error: pin not init!\n");
-        return -1;
+        return LOW;
     }
     else {
         if(hal_gpio_input_get(res, &val))
             printf("hal_gpio_input_get error!\n");
-        return val;
+        return (val == 0 ? LOW : HIGH);
     }
 }

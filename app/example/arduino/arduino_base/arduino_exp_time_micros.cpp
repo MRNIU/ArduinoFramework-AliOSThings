@@ -6,8 +6,6 @@
 extern "C" {
 #endif /* __cplusplus */
 
-#include <stdio.h>
-
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
@@ -18,10 +16,10 @@ void arduino_exp_time_micros(void)
 {
     unsigned long time;
     
-    printf("micros Time: ");
+    print("micros Time: ");
     time = micros();
 
-    printf("%lu\n", time);
+    print("%lu\n", time);
     delay(1000);
 
     return;

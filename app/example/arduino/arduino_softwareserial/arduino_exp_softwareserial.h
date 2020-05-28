@@ -6,7 +6,7 @@
 #ifndef ARDUINO_EXP_SOFTWARESERIAL_H
 #define ARDUINO_EXP_SOFTWARESERIAL_H
 
-#include <../middleware/arduino/include/arduino.h>
+#include <../middleware/arduino/api/ArduinoAPI.h>
 #include <../middleware/arduino/include/softwareserial.h>
 
 void test(void);

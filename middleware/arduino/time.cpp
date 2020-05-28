@@ -2,7 +2,7 @@
  * Copyright (C) 2019 MRNIU
  */
 
-#include <include/arduino.h>
+#include <api/ArduinoAPI.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -11,19 +11,14 @@ extern "C" {
 #include <stddef.h>
 #include <stdio.h>
 #include <aos/kernel.h>
-#include <aos/hal/gpio.h>
-
-long long millis(void);
-long long micros(void);
-void delay(int ms);
-void delayMicroseconds(long us);
+#include <api/ArduinoAPI.h>
 
 /**
  * Get current time in ms.
  * 
  * @return	ms
  */
-long long millis(void)
+unsigned long millis(void)
 {
     return aos_now_ms();
 }
@@ -33,7 +28,7 @@ long long millis(void)
  * 
  * @return	us
  */
-long long micros(void)
+unsigned long micros(void)
 {
     return aos_now()/1000;
 }
@@ -45,7 +40,7 @@ long long micros(void)
  * 
  * @return     void
  */
-void delay(int ms)
+void delay(unsigned long ms)
 {
 	aos_msleep(ms);
     return;
@@ -59,7 +54,7 @@ void delay(int ms)
  * 
  * @return     void
  */
-void delayMicroseconds(long us)
+void delayMicroseconds(unsigned int us)
 {
     return;
 }

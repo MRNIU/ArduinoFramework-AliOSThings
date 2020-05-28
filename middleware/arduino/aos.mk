@@ -13,7 +13,13 @@ $(NAME)_SOURCES := linkedlist.c \
 					lcd.cpp \
 					softwareserial.cpp \
 					wire.cpp \
-					interface.cpp
+					interface.cpp \
+					api/Common.cpp \
+					api/IPAddress.cpp \
+					api/PluggableUSB.cpp \
+					api/Print.cpp \
+					api/Stream.cpp \
+					api/String.cpp
 
 GLOBAL_DEFINES += AOS_NO_WIFI \
 					AOS_COMP_VFS \

@@ -16,7 +16,7 @@ extern "C" {
 #endif /* __cplusplus */
 
 #include "aos/yloop.h"
-#include <include/arduino.h>
+#include <api/ArduinoAPI.h>
 
 int application_start(int argc, char *argv[]){
     setup();

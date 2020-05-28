@@ -10,29 +10,19 @@ extern "C" {
 #endif /* __cplusplus */
 
 #include <aos/hal/uart.h>
+#include "../api/ArduinoAPI.h"
 
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
 
-#include <string>
-
 #define BUFSIZE 64
 
-class SoftwareSerial {
-private:
-    uart_dev_t uart;
-    bool buffer_overflow;
-    bool inverse_logic;
-    static uint8_t readbuf[BUFSIZE];
-    static volatile uint8_t buffer_tail;
-    static volatile uint8_t buffer_head;
-    static SoftwareSerial * active_object;
-    inline void recv() __attribute__((__always_inline__));
+class SoftwareSerial : public HardwareSerial {
 public:
     SoftwareSerial(uint8_t uart_port, bool inverse_logic = false);
     ~SoftwareSerial();
-    void begin(uint32_t speed);
+    void begin(unsigned long baudrate);
     bool listen();
     void end();
     bool isListening();
