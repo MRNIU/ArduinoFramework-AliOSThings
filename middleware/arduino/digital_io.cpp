@@ -47,7 +47,7 @@ int port_equal(void *vlocation1, void *vlocation2)
  *
  * @param[in]  pin   the pin number
  * @param[in]  config   INPUT or OUTPUT
- * 
+ *
  * @return     void
  */
 void pinMode(uint8_t pin, uint8_t config)
@@ -74,7 +74,7 @@ void pinMode(uint8_t pin, uint8_t config)
  *
  * @param[in]  pin  the pin which should be write
  * @param[in]  val   the value which should be write
- * 
+ *
  * @return     void
  */
 void digitalWrite(uint8_t pin, uint8_t val){
@@ -96,13 +96,13 @@ void digitalWrite(uint8_t pin, uint8_t val){
             if(hal_gpio_output_low(res))
                 printf("hal_gpio_output_low error!\n");
             return;
-        }    
+        }
     }
     return;
 }
 
 /**
- * set pin mode
+ * Read a digital pin
  *
  * @param[in]  pin  the pin which should be read
  * @return     the value from gpio pin
@@ -118,6 +118,6 @@ int digitalRead(uint8_t pin)
     else {
         if(hal_gpio_input_get(res, &val))
             printf("hal_gpio_input_get error!\n");
-        return val;    
+        return val;
     }
 }
